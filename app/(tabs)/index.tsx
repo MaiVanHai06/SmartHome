@@ -2,14 +2,28 @@ import { Image, StyleSheet, Platform, View, Text, ImageBackground, TextInput, Bu
 import React from 'react'
 import { useState } from 'react'
 import Icon from '@expo/vector-icons/FontAwesome'
+// inport {NavigationContainer} from '@react-navigation/native'
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { red } from 'react-native-reanimated/lib/typescript/Colors';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-
-
+// function RegisterScreen() {
+//   return(
+//     <View style={{flex:1, justifyContent:'center',alignItems:'center'}}>
+//       <Text>REGISTER</Text>
+//     </View>
+//     )
+// }
+// const Stack = createStackNavigator();
+// export default function App() {
+//   return (
+//     <NavigationContainer></NavigationContainer>
+//   )
+// }
 export default function HomeScreen() {
   const image = require('/Users/maivanhai061204dn/Documents/workspace/test-one/hello-you/my-app/assets/images/backgroundHouse.png')
   const [username, setUserName] = useState('')
@@ -20,14 +34,15 @@ export default function HomeScreen() {
     const checkSpace = /\s/;
     const checkAccents = /[[áàảạãâầấẩậăắẳặâ]/i
     if (checkSpace.test(username)) {
-      Alert.alert('Username khong duoc chua khoang trang')
-    } else if (checkSpace.test(username)) {
+      Alert.alert('Username khong duoc chua khoang trắng')
+    } else if (checkAccents.test(username)) {
       Alert.alert('Username khong duoc chua dau')
     } else {
       console.log('username', username);
     }
     console.log('password', password);
   }
+  // tạo ẩn hiện password
   const [passwordVisible, setPasswordVisible] = useState(false)
   const handlePasswordVisible = () => {
     setPasswordVisible(prevState => !prevState)
